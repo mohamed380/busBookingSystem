@@ -17,7 +17,7 @@ class BusFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'capacity' => $this->faker->numberBetween(10, 15)
         ];
     }
 }

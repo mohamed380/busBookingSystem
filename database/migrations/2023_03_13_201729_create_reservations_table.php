@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('bus_seat_id');
+            $table->unsignedBigInteger('trip_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('bus_seat_id')->references('id')->on('bus_seats');
+            $table->foreign('trip_id')->references('id')->on('trips');
         });
     }
 

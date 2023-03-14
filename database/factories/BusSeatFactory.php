@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Bus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,17 @@ class BusSeatFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'identifier' => $this->faker->regexify('[A-Za-z0-9]{5}'),
+            'bus_id' => Bus::factory()->create()->id
         ];
+    }
+
+    public function ofBus(Bus $bus): Factory
+    {
+        return $this->state(function (array $attributes) use($bus){
+            return [
+                'bus_id' => $bus->id,
+            ];
+        });
     }
 }

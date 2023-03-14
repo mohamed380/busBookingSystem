@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\BusSeat;
+use App\Models\Trip;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,9 @@ class ReservationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory()->create()->id,
+            'trip_id' => Trip::factory()->create()->id,
+            'bus_seat_id' => BusSeat::factory()->create()
         ];
     }
 }

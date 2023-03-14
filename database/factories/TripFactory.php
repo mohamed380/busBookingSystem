@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Bus;
+use App\Models\Station;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,29 @@ class TripFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'source_station_id' => Station::factory()->create()->id,
+            'destination_station_id' => Station::factory()->create()->id,
+            'bus_id' => Bus::factory()->create()->id,
+            'main_trip_id' => null,
         ];
     }
+
+    public function sourceStation(Station $station): Factory
+    {
+        return $this->state(function (array $attributes) use($station){
+            return [
+                'source_station_id' => $station->id,
+            ];
+        });
+    }
+
+    public function destinationStation(Station $station): Factory
+    {
+        return $this->state(function (array $attributes) use($station){
+            return [
+                'destination_station_id' => $station->id,
+            ];
+        });
+    }
+
 }
