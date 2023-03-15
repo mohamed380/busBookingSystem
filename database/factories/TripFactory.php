@@ -26,7 +26,7 @@ class TripFactory extends Factory
         ];
     }
 
-    public function sourceStation(Station $station): Factory
+    public function sourceStation(Station $station): TripFactory
     {
         return $this->state(function (array $attributes) use($station){
             return [
@@ -35,7 +35,7 @@ class TripFactory extends Factory
         });
     }
 
-    public function destinationStation(Station $station): Factory
+    public function destinationStation(Station $station): TripFactory
     {
         return $this->state(function (array $attributes) use($station){
             return [
@@ -44,4 +44,13 @@ class TripFactory extends Factory
         });
     }
 
+
+    public function bus(Bus $bus): TripFactory
+    {
+        return $this->state(function (array $attributes) use($bus){
+            return [
+                'bus_id' => $bus->id,
+            ];
+        });
+    }
 }

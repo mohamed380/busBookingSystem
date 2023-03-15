@@ -53,4 +53,14 @@ class Trip extends Model
     {
         return $this->belongsTo(Bus::class, 'bus_id');
     }
+
+    public function reservations(): HasMany
+    {
+        return $this->hasMany(Reservation::class, 'trip_id');
+    }
+
+    public function isMainTrip(): bool
+    {
+        return is_null($this->main_trip_id);
+    }
 }

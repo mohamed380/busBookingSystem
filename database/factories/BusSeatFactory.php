@@ -23,7 +23,7 @@ class BusSeatFactory extends Factory
         ];
     }
 
-    public function ofBus(Bus $bus): Factory
+    public function ofBus(Bus $bus): BusSeatFactory
     {
         return $this->state(function (array $attributes) use($bus){
             return [

@@ -21,8 +21,24 @@ class ReservationFactory extends Factory
     {
         return [
             'user_id' => User::factory()->create()->id,
-            'trip_id' => Trip::factory()->create()->id,
-            'bus_seat_id' => BusSeat::factory()->create()
         ];
+    }
+
+    public function trip(Trip $trip): ReservationFactory
+    {
+        return $this->state(function (array $attributes) use($trip){
+            return [
+                'trip_id' => $trip->id,
+            ];
+        });
+    }
+
+    public function busSeat(BusSeat $seat): ReservationFactory
+    {
+        return $this->state(function (array $attributes) use($seat){
+            return [
+                'bus_seat_id' => $seat->id,
+            ];
+        });
     }
 }
